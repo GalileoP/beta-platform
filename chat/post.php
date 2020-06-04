@@ -1,21 +1,20 @@
 <?php
 session_start();
+include ('../steamauth/userInfo.php');
 if(isset($_SESSION['name'])){
     $text = $_POST['text'];
-     
     $fp = fopen("log.html", 'a');
-    $admins = array('76561198840116213','76561198346993827', '76561198354130456');
-    $isAdmin = false;
-    foreach($admins as $admin){
-        if($_SESSION['steamid'] == $admin){
-            $isAdmin = true;
-        }
-    }
+    console.log("test1");
+    $isAdmin = $_SESSION['isAdmin'];
+    $fp = fopen("log.html", 'a');
+
+    $href = $steamprofile['profileurl'];
+
     if($isAdmin == true){
-     fwrite($fp, "<div class='msgln'><b><span style='color: #ce402c;'>".$_SESSION['name']."</span></b>: ".stripslashes(htmlspecialchars($text))."</div>");
+        fwrite($fp, "<div id='msg' class='msgln'><b><a style='color: #ce402c; text-decoration: none; cursor: pointer;' href='$href'>".$_SESSION['name']."</a></b>: ".stripslashes(htmlspecialchars($text))."</div>");
     }
     else{
-        fwrite($fp, "<div class='msgln'><b><span style='color: #587280;'>".$_SESSION['name']."</span></b>: ".stripslashes(htmlspecialchars($text))."</div>");
+        fwrite($fp, "<div id='msg' class='msgln'><b><a style='color: #587280; text-decoration: none; cursor: pointer;' href='$href'>".$_SESSION['name']."</a></b>: ".stripslashes(htmlspecialchars($text))."</div>");
     }
     fclose($fp);
 }

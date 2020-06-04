@@ -1,387 +1,265 @@
 <?php
-    require ('steamauth/steamauth.php');  
-
+require ('settings.php');
+error_reporting(E_ERROR | E_PARSE);
+$_POST ['name'] = $steamprofile['personaname'];
+$_SESSION ['name'] = $steamprofile['personaname'];
 ?>
-		<?php
-if(!isset($_SESSION['steamid'])) {
-    echo "<!DOCTYPE html>";
-    echo "<html lang='en'>";
-    echo "<meta charset='UTF-8'>";
-    echo "<meta http-equiv='X-UA-Compatible' content='IE=edge'>";
-    echo "<meta name='viewport' content='width=device-width, initial-scale=1'>";
-    echo "<title>BETA Platform</title>";
-    echo "<link rel='stylesheet' href='https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css'>";
-    echo "<link href='https://fonts.googleapis.com/css2?family=Varela+Round&display=swap' rel='stylesheet'>";
-    echo "<style>
-            *{
-              padding: 0px;
-              margin: 0px;
-            }
-            body{
-              background-color: #161616;
-            }
-            
-            .test{
-              position: relative;
-              width: 100%;
-              height: 64px;
-              background-color: #101010;
-            }
-            .signin_button{
-              width: 200px;
-              position: relative;
-              top: 10px;
-            }
-            .button {
-              background-color: #ce402c;
-              border: none;
-              color: white;
-              padding: 10px 25px;
-              border-radius: 10px;
-              text-align: center;
-              text-decoration: none;
-              outline:none;
-              font-size: 12px;
-              transition-duration: 0.4s;
-              cursor: pointer;
-              box-shadow: 0px 4px #ad2815;
-            }
-            .button:hover {
-              background-color: #ad2815;
-              color: white;
-              border: none;
-            }
-            .textinside{
-              position: relative;
-              left: 8px;
-              top: 5px;
-              float: right;
-            }
-            .pacman{
-              width: 100%;
-              height: 35px;
-              background-color: #0d0d0d;
-            }
-            .tservice a{
-              height: 15px;
-               font-size: 14px;
-               display: inline-block;
-               transition-duration: 0.7s;
-               width: 130px;
-               left: 105px;
-               position: relative;
-               top: -9px;
-               text-align: center;
-               font-family: helvetica;
-               color: #a3a3a3;
-               text-decoration: none;
-             }
-             .tservice a:hover{
-              color: white;
-             }
-             .reedemcode a{
-              height: 15px;
-              font-size: 14px;
-              display: inline-block;
-              transition-duration: 0.7s;
-              width: 100px;
-              left: 10px;
-              position: relative;
-              top: 10px;
-              text-align: center;
-              font-family: helvetica;
-              color: #ce402c;
-              text-decoration: none;
-            }
-            .reedemcode a:hover{
-              color: #ff3b1f;
-            }
-            .betaplatform{
-              position: fixed;
-              color: white;
-              top: 58px;
-              left: 20px;
-              width: 150px;
-              font-family: helvetica;
-            }
-            .textinside{
-              font-family: 'Varela Round', sans-serif;
-            }
-            .chatokno{
-              position: fixed;
-              left: 1200px;
-              bottom: 150px;
-              z-index: -1;
-            }
-            .skrij{
-              position: relative;
-              width: 382px;
-              height: 41.5px;
-              color: white;
-              border-radius: 10px;
-              background-color: #16202d;
-              top: 578px;
-              left: 1509px;
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml">
+    <head>
+        <div class="chat-text">Chat</div>
+    </head>
+    <body>
+        <style>
+            form,p,span {
+                margin: 0;
+                padding: 0;
             }
 
-            .skrijnot{
-              position: relative;
-              text-align: center;
-              top: 10px;
+            .chatbox::-webkit-scrollbar {
+                width: 10px;
             }
-            
-            @media only screen and (min-width: 100px){
-              .signin_button{
+
+            /* Track */
+            .chatbox::-webkit-scrollbar-track {
+                background: transparent;
+            }
+
+            /* Handle */
+            .chatbox::-webkit-scrollbar-thumb {
+                background: transparent;
+            }
+
+            /* Handle on hover */
+            .chatbox::-webkit-scrollbar-thumb:hover {
+                background: transparent;
+            }
+
+            input {
+                font: 12px arial;
+            }
+            .chat-text{
+                position: relative;
+                height: 20px;
+                width: 100%;
+                top: 25px;
+                text-align: center;
+                font-family: helvetica;
+                color: white;
+                font-size: 20px;
+            }
+
+            .submitmsg{
+                background-color: transparent;
+                outline: none;
+                border: none;
+            }
+            .dfaq {
+                position: relative;
+                bottom: 450px;
+                padding: 50px;
+                z-index: -1;
+                margin: 0 auto;
+                background-color: #1c1c1c;
+                height: 425px;
+                width: 300px;
+                border-radius: 10px;
+            }
+            .chatbox {
+                position: relative;
+                text-align: left;
+                margin: 0 auto;
+                top: 55px;
+                right: 0px;
+                margin-bottom: 25px;
+                color: white;
+                font-family: helvetica;
+                height: 450px;
+                font-size: 20px;
+                width: 370px;
+                overflow-wrap: break-word;
+                overflow: auto;
+            }
+            :root {
+                --usermsg-color: #1a1a1a;
+                --placeholder-opacity: 0.5;
+                --placeholder-color: white;
+            }
+            .usermsg {
+                width: 360px;
+                padding: 10px;
+                height: 40px;
+                border-radius: 10px;
+                color: white;
+                border: none;
+                background-color: var(--usermsg-color);
+                outline: none;
+                font-size: 18px;
+                position: absolute;
+                top: 630px;
                 left: 50%;
-                transform: translate(-50%);
-              }
-            }
-  
-              @media only screen and (min-width: 768px){
-                .signin_button{
-                  left: 85%;
-                }
-              }
-                @media only screen and (min-width: 1150px){
-                  .signin_button{
-                    left: 90%;
-                  }
-                }
-  
-                  @media only screen and (min-width: 1500px){
-                    .signin_button{
-                      left: 93%;
-                    }
-                  }
-            @media only all and (max-width: 600px){
-            .signin_button{
-              left: 50%;
-              transform: translate(-50%);
-            }
-            .pacman{
-              display: none;
-            }
+                transform: translate(-50%)
             }
 
-          </style>";
-    echo "<div class='pacman'><div class='reedemcode'><a href='#'><strong>Redeem Code</strong></a></div><div class='tservice'><a href='#'><strong>Terms of Service</strong></a></div></div>";
-    echo "<div class='test'><div class='signin_button'><a href='?login'><button class='button'><i class='fa fa-steam' style='font-size:20px'></i> <div class='textinside'><strong>SIGN IN WITH STEAM</strong></div></button></a></div></div>";
-    echo "</body>";
-    echo "</html>";
-	}  else {
-    include ('steamauth/userInfo.php');
-	?>	
-  <!DOCTYPE html>
-<html lang="en">
-  <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <link href="https://fonts.googleapis.com/css2?family=Varela+Round&display=swap" rel="stylesheet">
-    <title>BETA</title>
-    <style>
-      *{
-        padding: 0px;
-        margin: 0px;
-        }
-      body{
-        background-color: #161616;
-      }
-      .tes{
-        width: 100%;
-        height: 64px;
-        background-color: #101010;
-        }
-      .ime{
-        position: relative;
-        font-family: helvetica;
-        color: white;
-        top: -36px;
-        text-align: right;
-        white-space: nowrap; 
-        width: 170px; 
-        overflow: hidden;
-        text-overflow: ellipsis; 
-        right: 183px;
-        font-family: 'Varela Round', sans-serif;
-      }
-      .sredina{
-        position: relative;
-        top: 10px;
-        left: 75%;
-        width: 64px;
-      }
-      .sredina img{
-        border-radius: 50%;
-        width: 45px;
-        height: 45px;
-      }
-      .logout_button{
-        position: relative;
-        top: -55px;
-        background-color: transparent;
-        border: none;
-        width: 20px;
-        left: 56px;
-     }
-     .fas fa-sign-out-alt{
-       color: red;
-       background-color: transparent;
-       border: none;
-       outline: none;
-       font-family: helvetica;
-       cursor: pointer;
-     }
-     .logout{
-       background-color: transparent;
-       color: #a3a3a3;
-       border: none;
-       outline: none;
-       cursor: pointer;
-       width: 0px;
-     }
-     .logout:hover{
-       color: white;
-       transition-duration: 0.7s;
-     }
-     .betaplatform{
-       position: fixed;
-       color: white;
-       top: 58px;
-       left: 20px;
-       width: 150px;
-       font-family: helvetica;
-     }
-     .reedemcode a{
-       height: 15px;
-       font-size: 14px;
-       display: inline-block;
-       transition-duration: 0.7s;
-       width: 100px;
-       left: 10px;
-       position: relative;
-       top: 10px;
-       text-align: center;
-       font-family: helvetica;
-       color: #ce402c;
-       text-decoration: none;
-     }
-     .reedemcode a:hover{
-       color: #ff3b1f;
-     }
-     .pacman{
-       width: 100%;
-       height: 35px;
-       background-color: #0d0d0d;
-     }
-     .tservice a{
-      height: 15px;
-       font-size: 14px;
-       display: inline-block;
-       transition-duration: 0.7s;
-       width: 130px;
-       left: 105px;
-       position: relative;
-       top: -9px;
-       text-align: center;
-       font-family: helvetica;
-       color: #a3a3a3;
-       text-decoration: none;
-     }
-     .tservice a:hover{
-      color: white;
-     }
-     .signin_button{
-              width: 200px;
-              position: relative;
-            }
-     .join {
-              background-color: #e74c3c;
-              border: none;
-              color: white;
-              padding: 12px 45px;
-              border-radius: 10px;
-              text-align: center;
-              text-decoration: none;
-              outline:none;
-              font-size: 12px;
-              transition-duration: 0.4s;
-              cursor: pointer;
-              box-shadow: 0px 4px #b03427;
-            }
-            .join:hover {
-              background-color: #b03427;
-              color: white;
-              border: none;
-            }
-            .watch {
-              background-color: #26364a;
-              border: none;
-              color: white;
-              padding: 12px 37px;
-              border-radius: 10px;
-              text-align: center;
-              text-decoration: none;
-              outline:none;
-              font-size: 12px;
-              transition-duration: 0.4s;
-              cursor: pointer;
-              box-shadow: 0px 4px #1b2838;
-            }
-            .watch:hover {
-              background-color: #1b2838;
-              color: white;
-              border: none;
-            }
-            .textinside{
-              font-size: 12px;
-              font-family: 'Varela Round', sans-serif;
+            .submit {
+                width: 60px;
             }
 
-            .chatokno{
-              position: fixed;
-              left: 1200px;
-              bottom: 150px;
-              z-index: -1;
+            .error {
+                color: white;
             }
-            @media only screen and (min-width: 100px){
-              .signin_button{
-                left: 50%;
-                transform: translate(-50%);
-              }
+
+            .msgln {
+                margin: 0 0 2px 0;
+                color: white;
             }
-  
-              @media only screen and (min-width: 768px){
-                .signin_button{
-                  left: 85%;
+
+            @media only all and (max-width: 600px) {
+                .chat-text{
+                    z-index: 100;
+                    top: 0px;
+
                 }
-              }
-                @media only screen and (min-width: 1150px){
-                  .signin_button{
-                    left: 90%;
-                  }
+                .chatbox::-webkit-scrollbar {
+                    display: none;
                 }
-  
-                  @media only screen and (min-width: 1500px){
-                    .signin_button{
-                      left: 93%;
+                .pacman{
+                    display: none;
+                }
+                .chatbox{
+                    right: 30px;
+                    position: relative;
+                    top: 30px;
+                    height: 370px;
+                    width: 200px;
+                }
+                .dfaq{
+                    width: 200px;
+                    bottom: 400px;
+                    height: 350px;
+                }
+                .usermsg{
+                    width: 250px;
+                    top: 523px;
+                }
+            }
+            #wrapper{
+                height: 500px;
+            }
+            ::placeholder {
+                color: var(--placeholder-color);
+                opacity: var(--placeholder-opacity);
+            }
+        </style>
+        <div id="wrapper">
+            <div id="menu">
+                <div style="clear: both"></div>
+            </div>
+            <div class="chatbox"><?php
+                if (file_exists ( "log.html" ) && filesize ( "log.html" ) > 0) {
+                    $handle = fopen ( "log.html", "r" );
+                    $contents = fread ( $handle, filesize ( "log.html" ) );
+                    fclose ( $handle );
+
+                    echo $contents;
+                }
+                ?></div>
+            <form name="message" action="" autocomplete="off">
+                <input id = "usermsgId" name="usermsg" placeholder="Type something.." type="text" class="usermsg"/>
+                <input name="submitmsg" value="" type="submit" class="submitmsg"/>
+            </form>
+            <div class="dfaq"></div>
+        </div>
+        <?php
+        session_start(); 
+        $isAdmin = $_SESSION['isAdmin'];
+        ?>
+        <script type="text/javascript"
+                src="https://ajax.googleapis.com/ajax/libs/jquery/1.3/jquery.min.js"></script>
+        <script type="text/javascript">
+            //
+            var characterLimit = 100;
+            var timer;
+            var time = 5;
+            var time1 = time;
+            var t = time;
+            let root = document.documentElement;
+            var noTimer = false;
+            var isAdmin = "<?php echo $isAdmin ?>"; 
+            
+            
+            //document.getElementById("usermsgId").placeholder = "Type something...123";
+
+            // jQuery Document
+            $(document).ready(function(){
+            });
+
+            $(".submitmsg").click(function(){
+                var msg = $(".usermsg").val().replace(/ /g, '');
+                console.log("Test: "+msg);
+                if(t >= time && msg != "" && (($(".usermsg").val().length < (characterLimit+1)) || isAdmin == "1")) {
+                    var clientmsg = $(".usermsg").val();
+                    $.post("chat/post.php", {text: clientmsg});
+                    $(".usermsg").attr("value", "");
+                    loadLog;
+                    if(isAdmin == "") {
+                        t = 0;
+                        root.style.setProperty('--placeholder-color', "white");
+                        root.style.setProperty('--placeholder-opacity', "1");
+                        document.getElementById("usermsgId").placeholder = "Cooldown "+time1+" seconds.";
+                        root.style.setProperty('--usermsg-color', "#111111");
+                        document.getElementById("usermsgId").disabled = true;
+                        timer = setInterval(test ,1000);
+                    }else {
+                        if(clientmsg.startsWith("!")) {
+                            var cmd = clientmsg.substring(1, clientmsg.length);
+                            if(cmd == "clear") {
+                                $.post("chat/deletelog.php", {cmd: cmd});
+                            }
+                        }
                     }
-                  }
-            @media only all and (max-width: 600px){
-            .signin_button{
-              left: 50%;
-              transform: translate(-50%);
+                }
+                return false;
+            });
+
+            //If user submits the form
+            function test() {
+                t++;
+                time1--;
+                document.getElementById("usermsgId").placeholder = "Cooldown "+time1+" seconds.";
+                if(t>=time) {
+                    clearInterval(timer);
+                    time1 = time;
+                    root.style.setProperty('--usermsg-color', "#1a1a1a");
+                    root.style.setProperty('--placeholder-color', "white");
+                    root.style.setProperty('--placeholder-opacity', "0.5");
+                    document.getElementById("usermsgId").disabled = false;
+                    document.getElementById("usermsgId").placeholder = "Type something...";
+                }
             }
-            .pacman{
-              display: none;
+
+            function loadLog(){		
+                var oldscrollHeight = $(".chatbox").attr("scrollHeight") - 0; //Scroll height before the request
+                $.ajax({
+                    url: "chat/log.html",
+                    cache: false,
+                    success: function(html){		
+                        $(".chatbox").html(html); //Insert chat log into the #chatbox div	
+
+                        //Auto-scroll			
+                        var newscrollHeight = $(".chatbox").attr("scrollHeight") - 1; //Scroll height after the request
+                        if(newscrollHeight > oldscrollHeight){
+                            $(".chatbox").animate({ scrollTop: newscrollHeight }, 'normal'); //Autoscroll to bottom of div
+                        }		
+                    },
+                });
             }
-            }
-    </style>
-  </head>
-  <div class="pacman"><div class="reedemcode"><a href="#"><strong>Redeem Code</strong></a></div><div class="tservice"><a href="#"><strong>Terms of Service</strong></a></div></div>
-  <div class='tes'><div class="sredina"><img src='<?=$steamprofile['avatarmedium']?>'></a><div class="ime"><?=$steamprofile['personaname']?></div><div class="logout_button"><?php logoutbutton(); ?></div></div>
-</body>
-  </html>
-		<?php
-		}    
-		?>
+
+            setInterval (loadLog, 100);
+        </script>
+        <script type="text/javascript"
+                src="https://ajax.googleapis.com/ajax/libs/jquery/1.3/jquery.min.js"></script>
+        <script type="text/javascript">
+        </script>
+    </body>
+</html>

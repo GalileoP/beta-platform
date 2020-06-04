@@ -63,6 +63,24 @@ if (isset($_GET['update'])){
 	exit;
 }
 
+//Koda katera preverja admine
+
+if(isset($_SESSION['name'])){
+    $steamId = $_SESSION['steamid'];
+}else {
+    $steamId = "null";
+}
+$admins = array('76561198840116213','76561198346993827', '76561198354130456');
+$_SESSION['isAdmin'] = false;
+    
+foreach($admins as $admin){
+    if($steamId == $admin){
+        $_SESSION['isAdmin'] = true;
+    }
+}
+
+
+
 // Version 4.0
 
 ?>
