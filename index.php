@@ -18,13 +18,14 @@ if(!isset($_SESSION['steamid'])) {
               margin: 0px;
             }
             body{
-              background-color: #16202d;
+              background-color: #161616;
             }
+            
             .test{
               position: relative;
               width: 100%;
               height: 64px;
-              background-color: #131c27;
+              background-color: #101010;
             }
             .signin_button{
               width: 200px;
@@ -32,7 +33,7 @@ if(!isset($_SESSION['steamid'])) {
               top: 10px;
             }
             .button {
-              background-color: #00b516;
+              background-color: #ce402c;
               border: none;
               color: white;
               padding: 10px 25px;
@@ -43,10 +44,10 @@ if(!isset($_SESSION['steamid'])) {
               font-size: 12px;
               transition-duration: 0.4s;
               cursor: pointer;
-              box-shadow: 0px 4px #009913;
+              box-shadow: 0px 4px #ad2815;
             }
             .button:hover {
-              background-color: #009913;
+              background-color: #ad2815;
               color: white;
               border: none;
             }
@@ -59,7 +60,7 @@ if(!isset($_SESSION['steamid'])) {
             .pacman{
               width: 100%;
               height: 35px;
-              background-color: #171a21;
+              background-color: #0d0d0d;
             }
             .tservice a{
               height: 15px;
@@ -89,11 +90,11 @@ if(!isset($_SESSION['steamid'])) {
               top: 10px;
               text-align: center;
               font-family: helvetica;
-              color: #0ee07b;
+              color: #ce402c;
               text-decoration: none;
             }
             .reedemcode a:hover{
-              color: #00c265;
+              color: #ff3b1f;
             }
             .betaplatform{
               position: fixed;
@@ -128,26 +129,40 @@ if(!isset($_SESSION['steamid'])) {
               text-align: center;
               top: 10px;
             }
-
+            
             @media only screen and (min-width: 100px){
+              .signin_button{
+                left: 50%;
+                transform: translate(-50%);
+              }
+            }
+  
+              @media only screen and (min-width: 768px){
+                .signin_button{
+                  left: 85%;
+                }
+              }
+                @media only screen and (min-width: 1150px){
+                  .signin_button{
+                    left: 90%;
+                  }
+                }
+  
+                  @media only screen and (min-width: 1500px){
+                    .signin_button{
+                      left: 93%;
+                    }
+                  }
+            @media only all and (max-width: 600px){
             .signin_button{
               left: 50%;
               transform: translate(-50%);
             }
+            .pacman{
+              display: none;
+            }
+            }
 
-            @media only screen and (min-width: 768px){
-              .signin_button{
-                left: 85%;
-              }
-              @media only screen and (min-width: 1150px){
-                .signin_button{
-                  left: 90%;
-                }
-
-                @media only screen and (min-width: 1500px){
-                  .signin_button{
-                    left: 93%;
-                  }
           </style>";
     echo "<div class='pacman'><div class='reedemcode'><a href='#'><strong>Redeem Code</strong></a></div><div class='tservice'><a href='#'><strong>Terms of Service</strong></a></div></div>";
     echo "<div class='test'><div class='signin_button'><a href='?login'><button class='button'><i class='fa fa-steam' style='font-size:20px'></i> <div class='textinside'><strong>SIGN IN WITH STEAM</strong></div></button></a></div></div>";
@@ -170,12 +185,12 @@ if(!isset($_SESSION['steamid'])) {
         margin: 0px;
         }
       body{
-        background-color: #16202d;
+        background-color: #161616;
       }
       .tes{
         width: 100%;
         height: 64px;
-        background-color: #131c27;
+        background-color: #101010;
         }
       .ime{
         position: relative;
@@ -229,16 +244,6 @@ if(!isset($_SESSION['steamid'])) {
        color: white;
        transition-duration: 0.7s;
      }
-     .smalltest{
-       height: 50px;
-       width: 120px;
-       opacity: 0%;
-       z-index: 1;
-       position:relative;
-       top: -89px;
-       right: 100%;
-       background-color: red;
-     }
      .betaplatform{
        position: fixed;
        color: white;
@@ -258,16 +263,16 @@ if(!isset($_SESSION['steamid'])) {
        top: 10px;
        text-align: center;
        font-family: helvetica;
-       color: #e3a600;
+       color: #ce402c;
        text-decoration: none;
      }
      .reedemcode a:hover{
-       color: #ffba00;
+       color: #ff3b1f;
      }
      .pacman{
        width: 100%;
        height: 35px;
-       background-color: #171a21;
+       background-color: #0d0d0d;
      }
      .tservice a{
       height: 15px;
@@ -339,10 +344,42 @@ if(!isset($_SESSION['steamid'])) {
               bottom: 150px;
               z-index: -1;
             }
+            @media only screen and (min-width: 100px){
+              .signin_button{
+                left: 50%;
+                transform: translate(-50%);
+              }
+            }
+  
+              @media only screen and (min-width: 768px){
+                .signin_button{
+                  left: 85%;
+                }
+              }
+                @media only screen and (min-width: 1150px){
+                  .signin_button{
+                    left: 90%;
+                  }
+                }
+  
+                  @media only screen and (min-width: 1500px){
+                    .signin_button{
+                      left: 93%;
+                    }
+                  }
+            @media only all and (max-width: 600px){
+            .signin_button{
+              left: 50%;
+              transform: translate(-50%);
+            }
+            .pacman{
+              display: none;
+            }
+            }
     </style>
   </head>
   <div class="pacman"><div class="reedemcode"><a href="#"><strong>Redeem Code</strong></a></div><div class="tservice"><a href="#"><strong>Terms of Service</strong></a></div></div>
-  <div class='tes'><div class="sredina"><img src='<?=$steamprofile['avatarmedium']?>'></a><div class="ime"><?=$steamprofile['personaname']?></div><div class="logout_button"><?php logoutbutton(); ?></div><div class="smalltest"></div></div>
+  <div class='tes'><div class="sredina"><img src='<?=$steamprofile['avatarmedium']?>'></a><div class="ime"><?=$steamprofile['personaname']?></div><div class="logout_button"><?php logoutbutton(); ?></div></div>
 </body>
   </html>
 		<?php

@@ -12,10 +12,10 @@ if(isset($_SESSION['name'])){
         }
     }
     if($isAdmin == true){
-     fwrite($fp, "<div class='msgln'><b><span style='color: #587280;'>".$_SESSION['name']."</span></b>: ".stripslashes(htmlspecialchars($text))."</div>");
+     fwrite($fp, "<div class='msgln'><b><span style='color: #ce402c;'>".$_SESSION['name']."</span></b>: ".stripslashes(htmlspecialchars($text))."</div>");
     }
     else{
-        fwrite($fp, "<div class='msgln'><b>".$_SESSION['name']."</b>: ".stripslashes(htmlspecialchars($text))."</div>");
+        fwrite($fp, "<div class='msgln'><b><span style='color: #587280;'>".$_SESSION['name']."</span></b>: ".stripslashes(htmlspecialchars($text))."</div>");
     }
     fclose($fp);
 }

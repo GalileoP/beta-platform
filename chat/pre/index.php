@@ -39,7 +39,7 @@ input {
 	padding: 50px;
 	z-index: -1;
 	margin: 0 auto;
-	background-color: #1c1c1c;
+	background-color: #1d2837;
 	height: 425px;
 	width: 300px;
 	border-radius: 10px;
@@ -60,9 +60,9 @@ input {
 	overflow: auto;
 }
 :root {
-  --usermsg-color: #1a1a1a;
+  --usermsg-color: #2c3d52;
   --placeholder-opacity: 0.5;
-  --placeholder-color: white;
+  --placeholder-color: gray;
 }
 .usermsg {
 	width: 360px;
@@ -155,7 +155,7 @@ input {
 	<script type="text/javascript">
 	var characterLimit = 100;
 	var timer;
-	var time = 5;
+	var time = 3;
 	var time1 = time;
 	var t = time;
 	let root = document.documentElement;
@@ -171,8 +171,8 @@ $(document).ready(function(){
 			loadLog;
 			root.style.setProperty('--placeholder-color', "white");
 			root.style.setProperty('--placeholder-opacity', "1");
-			document.getElementById("usermsgId").placeholder = "Cooldown "+time1+" seconds.";
-			root.style.setProperty('--usermsg-color', "#111111");
+			document.getElementById("usermsgId").placeholder = "You can type again in "+time1+" seconds.";
+			root.style.setProperty('--usermsg-color', "gray");
 			document.getElementById("usermsgId").disabled = true;
 			t = 0;
 			timer = setInterval(test ,1000);
@@ -184,13 +184,13 @@ $(document).ready(function(){
 function test() {
 	t++;
 	time1--;
-	document.getElementById("usermsgId").placeholder = "Cooldown "+time1+" seconds.";
+	document.getElementById("usermsgId").placeholder = "You can type again in "+time1+" seconds.";
 	//document.getElementById("time").innerHTML = time1;
 	if(t>=time) {
 		clearInterval(timer);
 		time1 = time;
-		root.style.setProperty('--usermsg-color', "#1a1a1a");
-		root.style.setProperty('--placeholder-color', "white");
+		root.style.setProperty('--usermsg-color', "#2c3d52");
+		root.style.setProperty('--placeholder-color', "gray");
 		root.style.setProperty('--placeholder-opacity', "0.5");
 		document.getElementById("usermsgId").disabled = false;
 		document.getElementById("usermsgId").placeholder = "Type something...";
@@ -216,7 +216,7 @@ function loadLog(){
 	});
 }
 
-setInterval (loadLog, 100);
+setInterval (loadLog, 250);
 </script>
 	<script type="text/javascript"
 		src="https://ajax.googleapis.com/ajax/libs/jquery/1.3/jquery.min.js"></script>
